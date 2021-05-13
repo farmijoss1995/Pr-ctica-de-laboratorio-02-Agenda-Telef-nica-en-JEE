@@ -59,7 +59,7 @@
       </div>
 
       <button type="submit" class="btn btn-primary">Registrar</button>
-       <button onclick="location.href = 'login.jsp';">Atra</button>
+       <button onclick="location.href = 'login.jsp';">Atras</button>
 
      </form>
     </div>
