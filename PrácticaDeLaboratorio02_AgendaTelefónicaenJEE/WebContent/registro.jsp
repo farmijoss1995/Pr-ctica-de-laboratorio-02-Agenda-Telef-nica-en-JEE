@@ -53,9 +53,9 @@
       </div>
 
       <div class="form-group">
-       <label for="uname">Password:</label> <input type="password"
-        class="form-control" id="password" placeholder="Password"
-        name="password" required>
+       <label for="uname">Contrasena:</label> <input type="contrasena"
+        class="form-control" id="contrasena" placeholder="contrasena"
+        name="contrasena" required>
       </div>
 
       <button type="submit" class="btn btn-primary">Registrar</button>

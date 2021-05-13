@@ -36,14 +36,14 @@ public class usuarioweb extends HttpServlet {
     	String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         String correo = request.getParameter("correo");
-        String password = request.getParameter("password");
+        String contrasena = request.getParameter("contrasena");
 
         usuario user = new usuario();
         user.setCedula(cedula);
         user.setNombre(nombre);
         user.setApellido(apellido);
         user.setCorreo(correo);
-        user.setPassword(password);
+        user.setContrasena(contrasena);
 
         usuarioDao.guardarUsuario(user);
 

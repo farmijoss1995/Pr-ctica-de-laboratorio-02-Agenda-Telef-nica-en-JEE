@@ -24,7 +24,7 @@ public class usuarioLogin extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.sendRedirect("accesosaceptado.jsp");
+        response.sendRedirect("listartelefono.jsp");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -40,10 +40,10 @@ public class usuarioLogin extends HttpServlet {
     private void authenticate(HttpServletRequest request, HttpServletResponse response)
     throws Exception {
         String correo = request.getParameter("correo");
-        String password = request.getParameter("password");
+        String contrasena = request.getParameter("contrasena");
 
-        if (loginDao.validarUsuario(correo, password)) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("accesosaceptado.jsp");
+        if (loginDao.validarUsuario(correo, contrasena)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("listartelefono.jsp");
             dispatcher.forward(request, response);
         } else {
         	request.getRequestDispatcher("errorlogeo.jsp").forward(request, response);

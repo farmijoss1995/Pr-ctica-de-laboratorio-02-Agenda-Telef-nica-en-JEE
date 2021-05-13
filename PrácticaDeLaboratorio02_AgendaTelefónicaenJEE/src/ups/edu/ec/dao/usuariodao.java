@@ -26,7 +26,7 @@ public class usuariodao {
         }
     }
 
-    public boolean validarUsuario(String correo, String password) {
+    public boolean validarUsuario(String correo, String contrasena) {
 
         Transaction transaction = null;
         usuario user = null;
@@ -37,7 +37,7 @@ public class usuariodao {
             user = (usuario) session.createQuery("FROM usuario U WHERE U.correo = :correo").setParameter("correo", correo)
                 .uniqueResult();
 
-            if (user != null && user.getPassword().equals(password)) {
+            if (user != null && user.getContrasena().equals(contrasena)) {
                 return true;
             }
             // commit transaction

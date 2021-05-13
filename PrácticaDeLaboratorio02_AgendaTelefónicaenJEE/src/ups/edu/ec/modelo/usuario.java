@@ -18,7 +18,7 @@ public class usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
+    
     @Column(name = "cedula")
     private String cedula;
     
@@ -31,10 +31,11 @@ public class usuario implements Serializable {
     @Column(name = "correo")
     private String correo;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "contrasena")
+    private String contrasena;
 
    
+	
 	public String getCedula() {
 		return cedula;
 	}
@@ -59,10 +60,11 @@ public class usuario implements Serializable {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	public String getPassword() {
-        return password;
+	public String getContrasena() {
+        return contrasena;
     }
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+   
 }
