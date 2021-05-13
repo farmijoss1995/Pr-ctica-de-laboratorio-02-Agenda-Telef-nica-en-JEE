@@ -26,5 +26,29 @@ public class usuariodao {
         }
     }
 
-	
+    public boolean validarUsuario(String correo, String password) {
+
+        Transaction transaction = null;
+        usuario user = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            user = (usuario) session.createQuery("FROM usuario U WHERE U.correo = :correo").setParameter("correo", correo)
+                .uniqueResult();
+
+            if (user != null && user.getPassword().equals(password)) {
+                return true;
+            }
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

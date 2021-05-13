@@ -17,7 +17,8 @@
  <div class="container">
   <div class="row col-md-10 col-md-offset-3">
    <div class="card card-body">
-    <h1>USUARIO INGRESADO EXITOSAMENTE</h1>
+    <h1>ERROR DE INGRESO DE DATOS, INGRESAR CORRECTAMENTE</h1>
+    <button type="submit" class="btn btn-primary" onclick="location.href = 'login.jsp';">LOGIN</button>
    </div>
   </div>
  </div>

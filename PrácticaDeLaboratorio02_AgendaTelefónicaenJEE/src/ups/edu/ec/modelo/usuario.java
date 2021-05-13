@@ -13,12 +13,15 @@ import javax.persistence.Table;
 @Table(name = "usuario")
 public class usuario implements Serializable {
 	
-    private static final long serialVersionUID = 1 ;
+    private static final long serialVersionUID = 1L ;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int cedula;
+    private int id;
 
+    @Column(name = "cedula")
+    private String cedula;
+    
     @Column(name = "nombre")
     private String nombre;
 
@@ -32,6 +35,12 @@ public class usuario implements Serializable {
     private String password;
 
    
+	public String getCedula() {
+		return cedula;
+	}
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
 	public String getNombre() {
 		return nombre;
 	}

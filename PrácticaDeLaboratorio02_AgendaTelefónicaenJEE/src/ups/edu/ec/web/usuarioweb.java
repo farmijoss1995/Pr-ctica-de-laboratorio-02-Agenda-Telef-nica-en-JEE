@@ -14,7 +14,7 @@ import ups.edu.ec.modelo.usuario;
 
 @WebServlet("/registro")
 public class usuarioweb extends HttpServlet {
-    private static final long serialVersionUID = 1 ;
+    private static final long serialVersionUID = 1L ;
     private usuariodao usuarioDao;
 
     public void init() {
@@ -28,16 +28,18 @@ public class usuarioweb extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.sendRedirect("register.jsp");
+        response.sendRedirect("accesoaceptado.jsp");
     }
 
     private void register(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String nombre = request.getParameter("nombre");
+    	String cedula = request.getParameter("cedula");
+    	String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         String correo = request.getParameter("correo");
         String password = request.getParameter("password");
 
         usuario user = new usuario();
+        user.setCedula(cedula);
         user.setNombre(nombre);
         user.setApellido(apellido);
         user.setCorreo(correo);
@@ -45,7 +47,7 @@ public class usuarioweb extends HttpServlet {
 
         usuarioDao.guardarUsuario(user);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("register-success.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
         dispatcher.forward(request, response);
     }
 }

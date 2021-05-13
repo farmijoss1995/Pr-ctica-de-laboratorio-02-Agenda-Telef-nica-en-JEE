@@ -23,11 +23,17 @@
    
    <div class="card card-body">
    
-    <h2>REGISTRO USUARIO</h2>
+    <h2>CREAR CUENTA</h2>
     <div class="col-md-8 col-md-offset-3">
 
      <form action="<%=request.getContextPath()%>/registro" method="post">
 
+      <div class="form-group">
+       <label for="uname">Cedula:</label> <input type="text"
+        class="form-control" id="uname" placeholder="cedula"
+        name="cedula" required>
+      </div>
+      
       <div class="form-group">
        <label for="uname">Nombre:</label> <input type="text"
         class="form-control" id="uname" placeholder="nombre"
@@ -52,7 +58,8 @@
         name="password" required>
       </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Registrar</button>
+       <button onclick="location.href = 'login.jsp';">Atras</button>
 
      </form>
     </div>
