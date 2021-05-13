@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ups.edu.ec.dao.telefonodao;
-import ups.edu.ec.modelo.telefono;
-@WebServlet("/telefono")
+import ups.edu.ec.modelo.Telefono;
+
+@WebServlet("/")
 public class telefonoservlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private telefonodao telefonoDao;
@@ -33,23 +34,23 @@ public class telefonoservlet extends HttpServlet {
 
         try {
             switch (action) {
-                case "/nuevo":
-                    nuevotelefono(request, response);
+                case "/new":
+                    showNewForm(request, response);
                     break;
-                case "/insertar":
-                    insertartelefono(request, response);
+                case "/insert":
+                    insertTelefono(request, response);
                     break;
-                case "/eliminar":
-                    eliminartelefono(request, response);
+                case "/delete":
+                    deleteTelefono(request, response);
                     break;
-                case "/editar":
-                    editartelefono(request, response);
+                case "/edit":
+                    showEditForm(request, response);
                     break;
-                case "/actualizar":
-                    actualizartelefono(request, response);
+                case "/update":
+                    updateTelefono(request, response);
                     break;
                 default:
-                    listartelefono(request, response);
+                    listTelelfono(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -57,57 +58,58 @@ public class telefonoservlet extends HttpServlet {
         }
     }
 
-    private void listartelefono(HttpServletRequest request, HttpServletResponse response)
+    private void listTelelfono(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, ServletException {
-        List < telefono > listartelefono = telefonoDao.getAlltelefono();
-        request.setAttribute("listartelefono", listartelefono);
+        List < Telefono > listTelefono = telefonoDao.getAllTelefono();
+        request.setAttribute("listTelelfono", listTelefono);
         RequestDispatcher dispatcher = request.getRequestDispatcher("listartelefono.jsp");
         dispatcher.forward(request, response);
     }
 
-    private void nuevotelefono(HttpServletRequest request, HttpServletResponse response)
+    private void showNewForm(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("listartelefono.jsp");
         dispatcher.forward(request, response);
     }
 
-    private void editartelefono(HttpServletRequest request, HttpServletResponse response)
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        telefono existingUser = telefonoDao.gettelefono(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
-        request.setAttribute("telefono", existingUser);
+        Telefono existingTelefono = telefonoDao.getTelefono(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("nuevotelefono.jsp");
+        request.setAttribute("tel", existingTelefono);
         dispatcher.forward(request, response);
 
     }
 
-    private void insertartelefono(HttpServletRequest request, HttpServletResponse response)
+    private void insertTelefono(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException {
-    	String cedula = request.getParameter("cedula");
+        String cedula = request.getParameter("cedula");
     	String numero = request.getParameter("numero");
         String tipo = request.getParameter("tipo");
-        String aoperadora= request.getParameter("operadora");
-        telefono nuevotelefono = new telefono(cedula, numero, tipo, aoperadora);
-        telefonoDao.guardartelefono(nuevotelefono);
-        response.sendRedirect("listar");
+        String aoperadora = request.getParameter("aoperadora");
+        Telefono newTelefono = new Telefono(cedula, numero, tipo, aoperadora);
+        telefonoDao.saveTelefono(newTelefono);
+        response.sendRedirect("list");
     }
 
-    private void actualizartelefono(HttpServletRequest request, HttpServletResponse response)
+    private void updateTelefono(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String cedula = request.getParameter("cedula");
-        String numero = request.getParameter("numero");
+    	String numero = request.getParameter("numero");
         String tipo = request.getParameter("tipo");
         String aoperadora = request.getParameter("aoperadora");
-        telefono user = new telefono(id, cedula, numero, tipo, aoperadora);
-        telefonoDao.actualizartelefono(user);
-        response.sendRedirect("listar");
+
+        Telefono tel = new Telefono(id, cedula, numero, tipo, aoperadora);
+        telefonoDao.updateTelefono(tel);
+        response.sendRedirect("list");
     }
 
-    private void eliminartelefono(HttpServletRequest request, HttpServletResponse response)
+    private void deleteTelefono(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        telefonoDao.eliminartelefono(id);
-        response.sendRedirect("listar");
+        telefonoDao.deleteTelefono(id);
+        response.sendRedirect("list");
     }
 }

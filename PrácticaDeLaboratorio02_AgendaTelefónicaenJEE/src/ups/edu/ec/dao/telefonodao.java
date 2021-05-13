@@ -5,19 +5,19 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import ups.edu.ec.modelo.telefono;
+import ups.edu.ec.modelo.Telefono;
 import ups.edu.ec.modelo.usuario;
 import ups.edu.ec.util.HibernateUtil;
 
 public class telefonodao {
 
-
-    public void guardartelefono(telefono telefono) {
+   
+    public void saveTelefono(Telefono telefono) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
-            // save the stu dent object
+            // save the student object
             session.save(telefono);
             // commit transaction
             transaction.commit();
@@ -29,7 +29,8 @@ public class telefonodao {
         }
     }
 
-    public void actualizartelefono(telefono telefono) {
+   
+    public void updateTelefono(Telefono telefono) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
@@ -47,18 +48,18 @@ public class telefonodao {
     }
 
     
-    public void eliminartelefono(int id) {
+    public void deleteTelefono(int id) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
 
-            // Delete a user object
-            telefono telefono = session.get(telefono.class, id);
-            if (telefono != null) {
-                session.delete(telefono);
-                System.out.println("telefono eliminado");
+            // Delete a tel object
+            Telefono tel = session.get(Telefono.class, id);
+            if (tel != null) {
+                session.delete(tel);
+                System.out.println("telefono is deleted");
             }
 
             // commit transaction
@@ -72,15 +73,15 @@ public class telefonodao {
     }
 
     
-    public telefono gettelefono(int id) {
+    public Telefono getTelefono(int id) {
 
         Transaction transaction = null;
-        telefono user = null;
+        Telefono tel = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
-            // get an user object
-            user = session.get(telefono.class, id);
+            // get an tel object
+            tel = session.get(Telefono.class, id);
             // commit transaction
             transaction.commit();
         } catch (Exception e) {
@@ -89,24 +90,20 @@ public class telefonodao {
             }
             e.printStackTrace();
         }
-        return user;
+        return tel;
     }
 
-    /**
-     * Get all Users
-     * @return
-     */
     @SuppressWarnings("unchecked")
-    public List < telefono > getAlltelefono() {
+    public List < Telefono > getAllTelefono() {
 
         Transaction transaction = null;
-        List < telefono > listOftelefono = null;
+        List < Telefono > listOfTelefono = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
-            // get an user object
+            // get an tel object
 
-            listOftelefono = session.createQuery("from telefono").getResultList();
+            listOfTelefono = session.createQuery("from Telefono").getResultList();
 
             // commit transaction
             transaction.commit();
@@ -116,9 +113,6 @@ public class telefonodao {
             }
             e.printStackTrace();
         }
-        return listOftelefono;
+        return listOfTelefono;
     }
 }
-
-
-

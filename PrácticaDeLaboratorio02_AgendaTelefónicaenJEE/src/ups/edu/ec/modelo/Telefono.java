@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table(name = "telefono")
-public class telefono {
+public class Telefono {
 	
     
     @Id
@@ -29,15 +29,15 @@ public class telefono {
     @Column(name = "aoperadora")
     protected String aoperadora;
  
-public telefono() {
+public Telefono() {
 }
-	public telefono(String cedula, String numero, String tipo, String aoperadora) {
+	public Telefono(String cedula, String numero, String tipo, String aoperadora) {
 		super();
 		this.cedula=cedula;
 		this.numero=numero;
 		this.tipo=tipo;
 	}
-	public telefono(int id, String cedula, String numero, String tipo, String aoperadora) {
+	public Telefono(int id, String cedula, String numero, String tipo, String aoperadora) {
 		super();
 		this.id=id;
 		this.cedula=cedula;
